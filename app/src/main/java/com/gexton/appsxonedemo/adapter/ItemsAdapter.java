@@ -55,8 +55,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder
             @Override
             public void onClick(View view) {
                 if (qty > 1) {
-                    qty--;
-                    holder.tvQuantity.setText("" + qty);
+                    holder.tvQuantity.setText("" + qty--);
                 }
             }
         });
@@ -64,8 +63,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder
         holder.tvPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                qty++;
-                holder.tvQuantity.setText("" + qty);
+                holder.tvQuantity.setText("" + qty++);
             }
         });
 
@@ -81,7 +79,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ItemDetailActivity.class);
-                intent.putExtra("ItemId", addChildModels.get(position).itemId);
+                intent.putExtra("ItemId",addChildModels.get(position).itemId);
                 context.startActivity(intent);
             }
         });

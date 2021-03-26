@@ -9,16 +9,54 @@
     android:gravity="center"
     tools:context=".HomeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Dashbord"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
+
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/btnItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Items" />
 
     <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnOrders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Orders" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnOrderedItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ordered Items" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnAboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About Us" />
+
+    <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Logout" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tvCallUsNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Us Now"/>
 
 </LinearLayout>
