@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppsXoneDemo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ItemsActivity"></activity>
+        <activity android:name=".ItemDetailActivity"></activity>
+        <activity
+            android:name=".ItemsActivity"
+            android:windowSoftInputMode="stateUnchanged" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

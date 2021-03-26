@@ -1,5 +1,6 @@
 package com.gexton.appsxonedemo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +9,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -32,7 +35,7 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
     String loginResponse;
     ApiCallback apiCallback;
     RecyclerView rvItems;
-    SearchView sv;
+    EditText edtSearch;
     Spinner spinner;
     ItemsAdapter adapter;
     ArrayList<CategoryModel> categoryModelArrayList = new ArrayList<>();
@@ -54,9 +57,12 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
         loginResponse = SharedPref.read("loginResponse", "");
         apiCallback = ItemsActivity.this;
         rvItems = findViewById(R.id.rvItems);
-        sv = findViewById(R.id.sv);
+        edtSearch = findViewById(R.id.edtSearch);
         spinner = findViewById(R.id.spinner);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ArrayList<String> list = new ArrayList<>();
 
@@ -110,7 +116,7 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
                 String sellPrice = jsonObject1.getString("SellPrice");
                 String subCategory = jsonObject1.getString("SubCategory");
                 String upcode = jsonObject1.getString("UPCCode");
-                itemsModelArrayList.add(new ItemsModel(category, description, icp, itemId, imagePath, itemName, mcp, qoh, qoo));
+                itemsModelArrayList.add(new ItemsModel(category, description, icp, itemId, imagePath, itemName, mcp, qoh, qoo, sellPrice, subCategory, upcode));
             }
             adapter = new ItemsAdapter(ItemsActivity.this, itemsModelArrayList);
             rvItems.setAdapter(adapter);
@@ -131,4 +137,11 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
         apiManager.loadURL();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

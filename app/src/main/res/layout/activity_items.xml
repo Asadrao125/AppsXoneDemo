@@ -8,23 +8,27 @@
     tools:context=".ItemsActivity">
 
     <LinearLayout
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/sv"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <EditText
+            android:padding="5dp"
+            android:id="@+id/edtSearch"
+            android:background="@drawable/curve_gray_border"
+            android:drawableLeft="@drawable/ic_search"
+            android:layout_width="match_parent"
+            android:hint="Search..."
+            android:layout_height="40dp"/>
 
         <Spinner
+            android:layout_marginTop="10dp"
+            android:background="@drawable/curve_gray_border"
+            android:padding="10dp"
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
 
     </LinearLayout>
 

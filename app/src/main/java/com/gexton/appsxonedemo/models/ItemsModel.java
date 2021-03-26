@@ -10,8 +10,11 @@ public class ItemsModel {
     public String mcp;
     public String qoh;
     public String qoo;
+    public String sellPrice;
+    public String subCategory;
+    public String upCode;
 
-    public ItemsModel(String category, String description, String icp, String itemId, String imagePath, String itemName, String mcp, String qoh, String qoo) {
+    public ItemsModel(String category, String description, String icp, String itemId, String imagePath, String itemName, String mcp, String qoh, String qoo, String sellPrice, String subCategory, String upCode) {
         this.category = category;
         this.description = description;
         this.icp = icp;
@@ -21,6 +24,9 @@ public class ItemsModel {
         this.mcp = mcp;
         this.qoh = qoh;
         this.qoo = qoo;
+        this.sellPrice = sellPrice;
+        this.subCategory = subCategory;
+        this.upCode = upCode;
     }
 
     public ItemsModel() {

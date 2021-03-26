@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@drawable/curve_gray_border"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ItemDetailActivity">
 
     <LinearLayout
         android:gravity="center"
@@ -19,6 +21,33 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@mipmap/ic_launcher"/>
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="Item Name"
+                android:id="@+id/tvItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$12.00"
+                android:textSize="16sp"
+                android:id="@+id/tvSellPrice"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
 
         <View
             android:layout_marginTop="5dp"
@@ -102,26 +131,6 @@
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:text="Item Name"
-            android:id="@+id/tvItemName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$12.00"
-            android:textSize="16sp"
-            android:id="@+id/tvSellPrice"/>
 
         <View
             android:layout_marginTop="5dp"
