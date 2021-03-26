@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCallback {
 
     @Override
     public void onApiResponce(int httpStatusCode, int successOrFail, String apiName, String apiResponce) {
-        Toast.makeText(this, "" + apiResponce, Toast.LENGTH_SHORT).show();
+        SharedPref.write("loginResponse", apiResponce);
     }
 
     private void checkUserExistance() {
