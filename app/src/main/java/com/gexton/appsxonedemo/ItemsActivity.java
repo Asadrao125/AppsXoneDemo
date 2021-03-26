@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -85,6 +89,41 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (edtSearch.getText().length() >= 2) {
+                    itemsList(edtSearch.getText().toString(), "");
+                } else if (edtSearch.getText().length() == 0) {
+                    itemsList("", "");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String catId = categoryModelArrayList.get(position).CategoryId;
+                itemsList(edtSearch.getText().toString(), catId);
+                rvItems.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+
+        });
     }
 
     @Override
@@ -96,30 +135,34 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
     @Override
     public void onApiResponce(int httpStatusCode, int successOrFail, String apiName, String apiResponce) {
         Log.d("items_response", "onApiResponce: " + apiResponce);
-
         try {
             JSONObject jsonObject = new JSONObject(apiResponce);
-
             JSONArray jsonArray = jsonObject.getJSONArray("ItemsList");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                Log.d("json_array", "onCreate: " + jsonArray.get(i));
-                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                String category = jsonObject1.getString("Category");
-                String description = jsonObject1.getString("Description");
-                String icp = jsonObject1.getString("ICP");
-                String imagePath = jsonObject1.getString("ImagePath");
-                String itemId = jsonObject1.getString("ItemID");
-                String itemName = jsonObject1.getString("ItemName");
-                String mcp = jsonObject1.getString("MCP");
-                String qoh = jsonObject1.getString("QOH");
-                String qoo = jsonObject1.getString("QOO");
-                String sellPrice = jsonObject1.getString("SellPrice");
-                String subCategory = jsonObject1.getString("SubCategory");
-                String upcode = jsonObject1.getString("UPCCode");
-                itemsModelArrayList.add(new ItemsModel(category, description, icp, itemId, imagePath, itemName, mcp, qoh, qoo, sellPrice, subCategory, upcode));
+            if (jsonArray.length() > 0) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Log.d("json_array", "onCreate: " + jsonArray.get(i));
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    String category = jsonObject1.getString("Category");
+                    String description = jsonObject1.getString("Description");
+                    String icp = jsonObject1.getString("ICP");
+                    String imagePath = jsonObject1.getString("ImagePath");
+                    String itemId = jsonObject1.getString("ItemID");
+                    String itemName = jsonObject1.getString("ItemName");
+                    String mcp = jsonObject1.getString("MCP");
+                    String qoh = jsonObject1.getString("QOH");
+                    String qoo = jsonObject1.getString("QOO");
+                    String sellPrice = jsonObject1.getString("SellPrice");
+                    String subCategory = jsonObject1.getString("SubCategory");
+                    String upcode = jsonObject1.getString("UPCCode");
+                    itemsModelArrayList.add(new ItemsModel(category, description, icp, itemId, imagePath, itemName, mcp, qoh, qoo, sellPrice, subCategory, upcode));
+                }
+                adapter = new ItemsAdapter(ItemsActivity.this, itemsModelArrayList);
+                rvItems.setAdapter(adapter);
+                rvItems.setVisibility(View.VISIBLE);
+            } else {
+                Toast.makeText(this, "Item Not Found", Toast.LENGTH_SHORT).show();
+                rvItems.setVisibility(View.GONE);
             }
-            adapter = new ItemsAdapter(ItemsActivity.this, itemsModelArrayList);
-            rvItems.setAdapter(adapter);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -143,7 +143,7 @@ public class ItemDetailActivity extends AppCompatActivity implements ApiCallback
             tvCategory.setText(cat);
             tvDescription.setText(description);
             tvMcp.setText(mcp + "\t" + icp);
-            tvSellPrice.setText(price);
+            tvSellPrice.setText("$ "+price);
             tvQoh.setText(qoh);
             tvQoo.setText(qoo);
             tvSubCategory.setText(subCategory);
