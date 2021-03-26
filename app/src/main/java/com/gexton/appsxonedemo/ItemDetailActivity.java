@@ -29,6 +29,7 @@ public class ItemDetailActivity extends AppCompatActivity implements ApiCallback
     TextView tvCategory, tvDescription, tvSubCategory, tvItemName, tvMcp, tvQoh, tvQoo, tvPlus, tvMinus, tvQuantity, tvSellPrice;
     ImageView img;
     Button btnAddToCart;
+    TextView tvIcp, tvEta, tvUcp;
     int qty = 0;
 
     @Override
@@ -97,6 +98,9 @@ public class ItemDetailActivity extends AppCompatActivity implements ApiCallback
         tvQuantity = findViewById(R.id.tvQuantity);
         tvSellPrice = findViewById(R.id.tvSellPrice);
         btnAddToCart = findViewById(R.id.btnAddToCart);
+        tvIcp = findViewById(R.id.tvIcp);
+        tvEta = findViewById(R.id.tvEta);
+        tvUcp = findViewById(R.id.tvUpc);
     }
 
     @Override
@@ -142,12 +146,15 @@ public class ItemDetailActivity extends AppCompatActivity implements ApiCallback
             tvItemName.setText(itemName);
             tvCategory.setText(cat);
             tvDescription.setText(description);
-            tvMcp.setText(mcp + "\t" + icp);
-            tvSellPrice.setText("$ "+price);
-            tvQoh.setText(qoh);
-            tvQoo.setText(qoo);
-            tvSubCategory.setText(subCategory);
+            tvMcp.setText("MCP: " + mcp);
+            tvSellPrice.setText("$ " + price);
+            tvQoh.setText("QOH: " + qoh);
+            tvQoo.setText("QOO: " + qoo);
+            tvSubCategory.setText("Sub Category" + subCategory);
             Picasso.get().load(imagePath).placeholder(R.mipmap.ic_launcher).into(img);
+            tvIcp.setText("ICP: " + icp);
+            tvEta.setText("ETA: " + eta);
+            tvUcp.setText("UPC: " + upc);
 
         } catch (JSONException e) {
             e.printStackTrace();

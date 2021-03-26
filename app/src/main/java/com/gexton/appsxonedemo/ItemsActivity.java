@@ -134,6 +134,7 @@ public class ItemsActivity extends AppCompatActivity implements ApiCallback {
 
     @Override
     public void onApiResponce(int httpStatusCode, int successOrFail, String apiName, String apiResponce) {
+        itemsModelArrayList.clear();
         Log.d("items_response", "onApiResponce: " + apiResponce);
         try {
             JSONObject jsonObject = new JSONObject(apiResponce);
